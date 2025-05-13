@@ -32,7 +32,7 @@ const Home = () => {
   const [currentMessage, setCurrentMessage] = useState("");
   const [checkpointId, setCheckpointId] = useState(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (currentMessage.trim()) {
       // First add the user message to the chat
@@ -70,8 +70,7 @@ const Home = () => {
           }
         ]);
 
-        // Create URL with checkpoint ID if it exists
-       
+        // Create URL with checkpoint ID if it existssad
         let url = `https://pe2-mgfu.onrender.com/chat_stream/${encodeURIComponent(userInput)}`;
         // let url = `http://127.0.0.1:8000/chat_stream/${encodeURIComponent(userInput)}`;
         
@@ -82,7 +81,7 @@ const Home = () => {
         // Connect to SSE endpoint using EventSource
         const eventSource = new EventSource(url);
         let streamedContent = "";
-        let searchData = null;
+        let searchData: SearchInfo | null = null;
         let hasReceivedContent = false;
 
         console.log("Connecting to SSE endpoint:", url);
